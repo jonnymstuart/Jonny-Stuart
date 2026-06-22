@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Rise design tokens
+ * Source: Figma "Rise — Website v2.0"
+ *   page color   #ebe5e1
+ *   ink/blue-blk #220b39
+ *   accent       #fa32a0  (hot magenta) + violet hero gradient
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-page: #ebe5e1;
+  --color-ink: #220b39;
+  --color-ink-70: rgba(34, 11, 57, 0.7);
+  --color-ink-50: rgba(34, 11, 57, 0.5);
+  --color-ink-30: rgba(34, 11, 57, 0.28);
+  --color-line: rgba(34, 11, 57, 0.16);
+  --color-dark: #16131a;
+  --color-dark-soft: #211c28;
+  --color-cream: #f4f0ec;
+  --color-white: #ffffff;
+
+  --color-violet: #6d23d6;
+  --color-magenta: #fa32a0;
+  --color-hotpink: #ff1f6b;
+  --color-rose: #d6155e;
+
+  --font-display: var(--font-display), "Times New Roman", serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-pill: 999px;
+
+  --ease-rise: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--color-page);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-magenta);
+  color: #fff;
+}
+
+/* Display serif helper — tighter tracking + optical size like PP Eiko */
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ------------------------------------------------------------------ *
+ * Marquee (infinite horizontal scroll)
+ * ------------------------------------------------------------------ */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-x var(--marquee-duration, 40s) linear infinite;
+}
+
+.marquee-group:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Subtle floating motion for hero blobs */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -3%, 0) scale(1.04);
+  }
+}
+
+.animate-drift {
+  animation: drift var(--drift-duration, 18s) var(--ease-rise) infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: fade-up 0.8s var(--ease-rise) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-drift,
+  .reveal {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
