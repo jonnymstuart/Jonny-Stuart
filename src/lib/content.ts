@@ -23,7 +23,8 @@ export const nav: NavItem[] = [
 export const hero = {
   lead: "Make it",
   leadAccent: "unreal",
-  intro: "We build intelligently to rise you beyond the ordinary.",
+  intro:
+    "The AI era made everything louder. We bring the clarity — and the craft — to rise you above the noise.",
   sub: "We’re a team of technical and design specialists HQ’d in sunny Lisbon.",
   trusted: "Trusted by founders, agencies and scaleups — worldwide",
 };
